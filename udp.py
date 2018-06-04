@@ -23,12 +23,13 @@ def send(ip, port, size=1000, interval=1, times=10, index=False):
         sock.sendto(data, (ip, port))
         print("send to {0} ({1}Byte)".format(ip, size))
         if index:
-            data[i // 255] += 1
+            data[0] = i % 256
         time.sleep(interval)
 
 def main():
     """main"""
-    send("127.0.0.1", 12321)
+    #send("127.0.0.1", 12321)
+    send("127.0.0.1", 12345, index=True, interval=0.01, times=257)
 
 if __name__ == '__main__':
     main()
