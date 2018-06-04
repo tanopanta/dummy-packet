@@ -20,10 +20,10 @@ def send(ip, port, size=1000, interval=1, times=10, index=False):
     data = bytearray([0 for _ in range(size)])
     
     for i in range(times):
-        sock.sendto(data, (ip, port))
-        print("send to {0} ({1}Byte)".format(ip, size))
         if index:
             data[0] = i % 256
+        sock.sendto(data, (ip, port))
+        print("send to {0} ({1}Byte)".format(ip, size))
         time.sleep(interval)
 
 def main():
